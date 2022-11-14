@@ -1,0 +1,34 @@
+{% extends 'layout.html' %}
+
+{% block title %}Homepage{% endblock %}
+
+{% block body %}
+{% if get_flashed_messages() %}
+    {% for message in get_flashed_messages() %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">Hello, {{ user }} {{ message }}</div>
+    {% endfor %}
+{% endif %}
+<form action="{{ url_for('index') }}" method="post">
+    <div class="mb-6 container-fluid">
+        <br>
+        <input autocomplete="off" autofocus class="form-control mx-auto" id="author" name="author" placeholder="Author" required type="text">
+    </div>
+    <div class="mb-6 container-fluid">
+        <br>
+        <input autocomplete="off" autofocus class="form-control mx-auto" id="title" name="title" placeholder="Title" required type="text">
+    </div>
+    <div class="container mt-4 mb-4">
+        <!--Bootstrap classes arrange web page components into columns and rows in a grid -->
+        <div class="row justify-content-md-center">
+            <div class="col-md-12 col-lg-8">
+                <h1 class="h2 mb-4">What do you have in mind</h1>
+                <label>Describe today in detail</label>
+                <div class="form-group">
+                    <textarea autofocus id="editor" name="editor" placeholder="One stroke at a time"></textarea>
+                </div>
+                    <button type="submit" class="btn btn-dark" id="btn">Submit</button>
+            </div>
+        </div>
+    </div>
+</form>
+{% endblock %}

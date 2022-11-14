@@ -1,0 +1,43 @@
+{% extends 'layout.html' %}
+
+{% block title %}History{% endblock %}
+
+{% block body %}
+<div class="container">
+            {% if journals %}
+            {% for journal in journals %}
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Author</th>
+                        <th>Title</th>
+                        <th>Date Written</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{ journal['author'] }}</td>
+                        <td>{{ journal['title'] }}</td>
+                        <td>{{ journal['date'] }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="pos-f-t">
+                <div class="collapse" id="navbarToggleExternalContent">
+                    <div class="bg-secondary p-4">
+                        <p class="text-white">{{ journal['content'] }}</p>
+                    </div>
+                </div>
+                <nav class="navbar navbar-dark bg-secondary">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent"
+                        aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </nav>
+            </div>
+            {% endfor %}
+            {% else %}
+            <object data="{{ url_for('static', filename='images/yoga.svg') }}" width="300" height="300"> </object>
+            {% endif %}
+</div>
+{% endblock %}
